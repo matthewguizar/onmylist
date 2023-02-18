@@ -1,6 +1,5 @@
 package com.watchlist.onmylist.entities;
 
-import com.watchlist.onmylist.dtos.UserDto;
 import com.watchlist.onmylist.utils.Role;
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,7 +23,7 @@ public class User implements UserDetails {
     private Long id;
     private String firstName;
     private String lastName;
-    private String email;
+    private String username;
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -38,7 +37,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return username;
     }
 
     @Override
@@ -61,22 +60,5 @@ public class User implements UserDetails {
         return true;
     }
 
-    public User(UserDto userDto) {
-        if (userDto.getEmail() !=null){
-            this.email = userDto.getEmail();
-        }
-        if (userDto.getFirstName() !=null){
-            this.firstName = userDto.getFirstName();
-        }
-        if (userDto.getLastName() !=null){
-            this.lastName = userDto.getLastName();
-        }
-        if (userDto.getPassword() !=null){
-            this.password = userDto.getPassword();
-        }
-        if (userDto.getRole() !=null){
-            this.role = userDto.getRole();
-        }
 
-    }
 }
